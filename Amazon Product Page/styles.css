@@ -1,12 +1,49 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  display: flex;
 }
 
 .title {
   font-weight: lighter;
+  font-size: 44px;
+  margin-bottom: 16px;
+}
+.breadcrumb {
+  color: #565959;
 }
 
 .main-img {
   box-shadow: 0px 2px 5px lightgray;
+  width: 450px;
+}
+
+.raiting-img {
+  width: 120px;
+  margin: 16px 0;
+}
+
+.main-page {
+  display: flex;
+}
+
+.book-cover-section {
+  margin: 16px;
+}
+
+.book-description-section {
+  margin: 16px;
+}
+
+a {
+  color: #007185;
+}
+h2 {
+  margin: 16px 0;
+}
+
+p {
+  margin: 8px 0;
+}
+
+.description {
+  font-size: 24px;
 }
