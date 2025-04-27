@@ -1,19 +1,26 @@
 body {
+  font-size: 18px;
   margin: 20px;
   background: #7209b7;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-image: url("https://img.freepik.com/free-vector/abstract-design-background-with-blue-purple-gradient_1048-13167.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .avatar {
-  width: 150px;
+  width: 200px;
+  height: 200px;
 }
 
 .card {
-  width: 400px;
-  margin: 0 auto;
-  padding: 20px;
+  width: 500px;
+  margin: 0px auto;
+  padding: 60px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   text-align: center;
   background: #480ca8;
   color: #ccdbfd;
@@ -21,22 +28,95 @@ body {
 
 .card {
   border-radius: 30px;
-  box-shadow: #560bad;
-}
-
-.card:hover {
-  text-shadow: 0px 0px 0px black, 0 0 3px blue, 0 0 1px lightcyan;
+  box-shadow: #7936af;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .holographic-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 100vh;
-  background: #01497c;
+  background: #480ca8;
+}
+
+.holographic-card {
+  width: 450px;
+  height: 150px;
+  background: #55118de8;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  transition: all 0.5s ease;
+}
+
+.holographic-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(0deg, transparent, transparent 30%, #19be3d4f);
+  transform: rotate(-45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
 }
 
 .holographic-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  transform: scale(1.1);
+  box-shadow: 0 0 80px rgb(25, 250, 220);
+}
+
+.holographic-card:hover::before {
+  opacity: 1;
+  transform: rotate(-45deg) translateY(100%);
+}
+
+.btn {
+  background: linear-gradient(-30deg, #182c999f 50%, #1d63e683 50%);
+  border-radius: 30px;
+  padding: 10px 10px;
+  margin: 12px;
+  display: inline-block;
+  -webkit-transform: translate(0%, 0%);
+  transform: translate(0%, 0%);
+  overflow: hidden;
+  color: #f3f4f7;
+  font-size: 20px;
+  letter-spacing: 2.5px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  -webkit-box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.btn:hover {
+  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
+}
+
+.btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(146, 148, 248, 0.4),
+    transparent
+  );
+  transition: all 650ms;
+}
+
+.btn:hover:before {
+  left: 100%;
 }
