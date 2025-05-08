@@ -70,3 +70,38 @@ async function fetchUsers() {
 }
 
 fetchUsers();
+
+// Recursive vs loop
+
+function doSomething(n) {
+  if (n === 0) {
+    // base condition
+    console.log("TASK COMPLETED");
+    return;
+  }
+  console.log("I am doing something");
+  doSomething(n - 1); // recursive call
+}
+doSomething(3);
+
+// Recursive function
+
+function findFactorial(num) {
+  if (num === 0) return 1;
+  let factorial = num * findFactorial(num - 1);
+  return factorial;
+}
+
+findFactorial(5); // 120
+
+// Loop function
+
+function findFactorial(num) {
+  let factorial = 1;
+  for (let i = num; i > 0; i--) {
+    factorial *= i;
+  }
+  return factorial;
+}
+
+findFactorial(5);

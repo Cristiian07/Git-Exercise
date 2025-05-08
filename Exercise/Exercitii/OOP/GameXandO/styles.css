@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(254, 255, 255);
+    
+}
+
+.container {
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 0 50px rgb(139, 210, 230);
+}
+
+h1 {
+    font-family: "Press Start 2P", system-ui;
+    text-shadow: 7px 0px 0px greenyellow;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-align: center;
+    padding-bottom: 20px;
+    
+}
+
+h2 {
+    font-family: "Press Start 2P", system-ui;
+        text-shadow: 7px 0px 0px greenyellow;
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 1rem;
+        padding-bottom: 20px;
+      
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        text-align: center;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #dbdbdb;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px rgb(118, 219, 247);
+}
+
+.cell:hover {
+    background-color: #b6b6b6;
+}
+
+.winning-cell {
+    background-color: rgb(137, 240, 137);d
+    border-color: #c3e6cb;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    background-color: #3498db; /* albastru modern */
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 180, 216, 0.3); /* umbră turquoise */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+ .btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+  }
+
+  .cell-score {
+    gap: 100 px 100px;
+    width:60px;
+    height: 60px;
+    background-color: #a9d261;
+    border-radius: 15px;
+    display:inline-flex;
+    justify-content: space-between;
+    box-shadow: 5px 5px 5px rgb(24, 74, 88);
+  }
