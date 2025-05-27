@@ -8,36 +8,46 @@ body {
 }
 
 h1 {
+  font-size: 70px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 h2 {
-  font-size: 50px;
+  font-size: 100px;
   margin-top: 0;
   margin-bottom: 20px;
 }
 
 button {
-  border: none;
+  border: rgb(54, 140, 168);
   padding-top: 10px;
   padding-bottom: 10px;
-  color: white;
+  color: rgb(245, 245, 245);
   font-weight: bold;
-  width: 200px;
+  font-size: 30px;
+  width: 300px;
   margin-bottom: 5px;
-  border-radius: 5px;
+  border-radius: 25px;
 }
 
 #increment-btn {
-  background: darkred;
+  background: #2c2891;
 }
 
 #save-btn {
-  background: darkgreen;
+  background: #1c7947;
 }
 
 .container {
   max-width: 80%;
   margin: auto;
+}
+
+#save-el {
+  font-weight: bold;
+}
+
+p {
+  font-size: 25px;
 }
