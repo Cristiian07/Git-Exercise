@@ -3,11 +3,15 @@ class Player {
     this.name = name;
     this.color = color;
     this.symbol = symbol;
-    this.score = 0;
+    localStorage.getItem(name);
+    this.score = localStorage.getItem(name).tiIn || 0;
+    this.scoreElement = null;
   }
 
   incrementScore() {
     this.score++;
+    this.scoreElement.textContent = this.score;
+    localStorage.setItem(this.name, this.score);
   }
 
   // This to be implemented by AiPlayer
@@ -17,12 +21,20 @@ class Player {
 }
 
 class AIPlayer extends Player {
-  constructor(name, color, symbol) {
+  constructor(color, symbol) {
     super("AI", color, symbol);
   }
 
-  makeMove() {
-    // To be implemented
+  makeMove(board) {
+    const emptyCells = board.cells.filter((cell) => cell.isEmpty());
+
+    if (emptyCells.length > 0) {
+      const randomIndex = Math.floor(Math.random() * emptyCells.length);
+      const randomCell = emptyCells[randomIndex];
+
+      return board.makeMove(randomCell.index, this);
+    }
+
     return false;
   }
 }
@@ -43,7 +55,6 @@ class Cell {
   }
 
   setValue(player) {
-    console.log(player);
     if (this.isEmpty()) {
       this.value = player.symbol;
       this.element.textContent = this.value;
@@ -57,6 +68,13 @@ class Cell {
 
   isEmpty() {
     return this.value === null;
+  }
+
+  clear() {
+    this.value = null;
+    this.element.textContent = "";
+    this.element.style.color = "";
+    this.element.classList.remove("winning-cell");
   }
 }
 
@@ -76,7 +94,6 @@ class GameBoard {
   }
 
   initialise() {
-    console.log("Total cells:", this.cells.length);
     const cellElements = document.querySelectorAll(".cell");
     cellElements.forEach((element, index) => {
       const cell = new Cell(index);
@@ -95,15 +112,25 @@ class GameBoard {
 
   hasWinner(player) {
     for (const pattern of this.winningPatterns) {
-      const isWinningPattern = pattern.every(
-        (index) => this.cells[index].value === player.symbol
-      );
+      let isWinningPattern = true;
+
+      for (const index of pattern) {
+        if (this.cells[index].value !== player.symbol) {
+          isWinningPattern = false;
+          break;
+        }
+      }
 
       if (isWinningPattern) {
-        return pattern;
+        return pattern.map((index) => this.cells[index]);
       }
     }
+
     return null;
+  }
+
+  reset() {
+    this.cells.forEach((cell) => cell.clear());
   }
 }
 
@@ -119,17 +146,29 @@ class TicTacToeGame {
     this.board.initialise();
     this.isGameActive = true;
     this.gameMode = gameMode;
+
+    // Get UI elements
+    this.statusDisplay = document.getElementsByClassName("status")[0];
+    this.restartButton = document.getElementById("restartButton");
+    this.modeButton = document.getElementById("switchMode");
+
+    this.playerX.scoreElement =
+      document.getElementsByClassName("score-value-x")[0];
+    this.playerO.scoreElement =
+      document.getElementsByClassName("score-value-0")[0];
   }
 
   start() {
     this.board.cells.forEach((cell) => {
-      console.log(cell);
       cell
         .getElement()
         .addEventListener("click", () => this.handleCellClick(cell), {
           once: true,
         });
     });
+
+    this.restartButton.addEventListener("click", () => this.restartGame());
+    this.modeButton.addEventListener("click", () => this.switchMode());
   }
 
   handleCellClick(cell) {
@@ -139,6 +178,17 @@ class TicTacToeGame {
 
     if (this.board.makeMove(cell.index, this.currentPlayer)) {
       this.checkGameState();
+
+      if (
+        this.isGameActive &&
+        this.gameMode === "pve" &&
+        this.currentPlayer === this.playerO
+      ) {
+        setTimeout(() => {
+          this.currentPlayer.makeMove(this.board);
+          this.checkGameState();
+        }, 500);
+      }
     }
   }
 
@@ -146,7 +196,7 @@ class TicTacToeGame {
     if (this.board.hasWinner(this.currentPlayer)) {
       this.handleWin();
     } else if (this.board.isFull()) {
-      //
+      this.handleDraw();
     } else {
       this.switchPlayer();
     }
@@ -158,31 +208,65 @@ class TicTacToeGame {
     } else {
       this.currentPlayer = this.playerX;
     }
+
+    console.log(this.statusDisplay.textContent);
+    this.statusDisplay.textContent = `${this.currentPlayer.name}'s turn`;
   }
 
   handleWin() {
     this.isGameActive = false;
     this.currentPlayer.incrementScore();
-    //set message
+    this.statusDisplay.textContent = `${this.currentPlayer.name} have won!`;
+
     const winningCells = this.board.hasWinner(this.currentPlayer);
     if (winningCells) {
-      console.log("Winning pattern:", winningCells);
-      winningCells.forEach((index) => {
-        this.board.cells[index].getElement().classList.add("winning-cell");
+      winningCells.forEach((cell) => {
+        cell.getElement().classList.add("winning-cell");
       });
     }
+  }
+
+  handleDraw() {
+    this.isGameActive = false;
+    this.statusDisplay.textContent = "Draw!";
+  }
+
+  restartGame() {
+    this.board.reset();
+    this.currentPlayer = this.playerX;
+    this.isGameActive = true;
+
+    this.statusDisplay.textContent = `${this.currentPlayer.name}'s turn`;
+
+    // Re-add event listener
+    this.board.cells.forEach((cell) => {
+      cell
+        .getElement()
+        .addEventListener("click", () => this.handleCellClick(cell), {
+          once: true,
+        });
+    });
+  }
+
+  switchMode() {
+    if (this.gameMode === "pvp") {
+      this.gameMode = "pve";
+      this.playerO = new AIPlayer("#3498db", "O");
+      this.modeButton.textContent = "Switch to Player Mode";
+    } else {
+      this.gameMode = "pvp";
+      this.playerO = new Player("Player O", "#3498db", "O");
+      this.modeButton.textContent = "Switch to AI Mode";
+    }
+
+    this.playerO.scoreElement =
+      document.getElementsByClassName("score-value-0")[0];
+    this.restartGame();
   }
 }
 
 const game = new TicTacToeGame();
 
 document.addEventListener("DOMContentLoaded", () => {
-  const game = new TicTacToeGame();
-  game.board.initialise();
   game.start();
-
-  const btn = document.querySelector(".btn");
-  btn.addEventListener("click", () => {
-    location.reload(); // simplu: reîncarcă pagina
-  });
 });
