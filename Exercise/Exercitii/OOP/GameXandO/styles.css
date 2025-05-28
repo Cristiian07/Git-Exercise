@@ -1,107 +1,140 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:rgb(254, 255, 255);
-    
+  font-family: "Arial", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ebebeb;
 }
 
 .container {
-    padding: 30px;
-    border-radius: 30px;
-    box-shadow: 0 0 50px rgb(139, 210, 230);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 h1 {
-    font-family: "Press Start 2P", system-ui;
-    text-shadow: 7px 0px 0px greenyellow;
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 2rem;
-    text-align: center;
-    padding-bottom: 20px;
-    
-}
-
-h2 {
-    font-family: "Press Start 2P", system-ui;
-        text-shadow: 7px 0px 0px greenyellow;
-        color: #333;
-        margin-bottom: 10px;
-        font-size: 1rem;
-        padding-bottom: 20px;
-      
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        text-align: center;
+  color: #333;
+  margin-bottom: 1rem;
 }
 
 .board {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 
 .cell {
-    width: 100px;
-    height: 100px;
-    background-color: #dbdbdb;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3rem;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 5px 5px 5px rgb(118, 219, 247);
+  width: 100px;
+  height: 100px;
+  background-color: #e7e7e7;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .cell:hover {
-    background-color: #b6b6b6;
+  background-color: #e1e1e1;
 }
 
 .winning-cell {
-    background-color: rgb(137, 240, 137);d
-    border-color: #c3e6cb;
+  background-color: #cfead6;
+  border-color: #c3e6cb;
 }
 
-.btn {
-    padding: 10px 20px;
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: white;
-    background-color: #3498db; /* albastru modern */
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 180, 216, 0.3); /* umbră turquoise */
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    margin-top: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.winning-cell:hover {
+  background-color: #d3f1da !important;
+  border-color: #c3e6cb;
+}
 
- .btn:hover {
-    background-color: #2980b9;
-    transform: scale(1.05);
-  }
+.score-board {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+  padding: 15px;
+  background-color: #dfe5e8;
+  border-radius: 8px;
+}
 
-  .cell-score {
-    gap: 100 px 100px;
-    width:60px;
-    height: 60px;
-    background-color: #a9d261;
-    border-radius: 15px;
-    display:inline-flex;
-    justify-content: space-between;
-    box-shadow: 5px 5px 5px rgb(24, 74, 88);
-  }
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  min-width: 120px;
+}
+
+.player-x {
+  background-color: rgba(231, 76, 60, 0.1);
+}
+
+.player-0 {
+  background-color: rgba(52, 152, 219, 0.1);
+}
+
+.player-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.score-value-x {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.score-value-0 {
+  color: #3498db;
+  font-weight: bold;
+}
+
+.status {
+  font-size: 1.2 rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.controls {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+button {
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 0.2s;
+}
+
+#restartButton {
+  background-color: rgb(54, 149, 54);
+}
+
+#switchMode {
+  background-color: #3498db;
+}
+
+#restartButton:hover {
+  background-color: rgb(79, 182, 79);
+}
+
+#switchMode:hover {
+  background-color: #4faeed;
+}
