@@ -1,0 +1,14 @@
+{
+    "extends": "stylelint-config-standard",
+    "rules": {
+        "color-hex-length": "short",
+        "unit-allowed-list": [
+            "em",
+            "rem",
+            "%",
+            "s",
+            "px"
+        ],
+        "block-no-empty": true
+    }
+}

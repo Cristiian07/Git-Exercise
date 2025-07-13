@@ -1,0 +1,23 @@
+<!-- npx htmlhint "src/**/*.html" -->
+
+<HTML> <!-- tagname uppercase -->
+
+<head>
+    <title>Test Page</title>
+    <script src="app.js"></script> <!-- script inside head without async/defer (not an error but often warned) -->
+</head>
+
+<body>
+    <h1>Welcome<h2>Subtitle</h1> <!-- Incorrect nesting: h2 inside h1, closing tags mismatch -->
+    <img src="photo.jpg"> <!-- Missing alt attribute -->
+    <a href="#">Click me</a <p>Paragraph without closing tag
+    <div id="main">
+        <p>Another paragraph</p>
+        <span>
+            <div>Invalid nested block inside inline
+        </span>
+    </div>
+    <input type="text" disabled="false"> <!-- disabled attribute should not have a value -->
+</body>
+
+</HTML>

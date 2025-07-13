@@ -1,0 +1,11 @@
+p:hover {
+  color: rebeccapurple;
+}
+
+p:first-child {
+  color: aliceblue;
+}
+
+p:nth-child(2) {
+  color: aquamarine;
+}

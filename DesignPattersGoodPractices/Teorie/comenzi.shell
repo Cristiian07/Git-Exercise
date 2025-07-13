@@ -1,0 +1,98 @@
+  
+# --------------------------------------------
+
+# Install node.js
+
+https://nodejs.org/en
+
+# --------------------------------------------
+
+# Create package.json (Initialize npm)
+
+npm init -y
+
+# --------------------------------------------
+
+# Run file with
+
+node script.js
+
+or run file through a html file
+
+# --------------------------------------------
+
+# Install ESLint and Prettier
+
+npm install -g prettier eslint
+
+# --------------------------------------------
+
+# Creating a configuration file - `.eslintrc.json`
+
+eslint --init
+
+# --------------------------------------------
+
+# Creating a configuration file - `.prettierrc.json`
+
+echo {}> .prettierrc.json
+
+# --------------------------------------------
+
+# Connecting Prettier and ESLint
+
+npm install -D eslint-config-prettier eslint-plugin-prettier
+
+# --------------------------------------------
+
+# Run ESLint on a file
+
+eslint script.js
+
+# --------------------------------------------
+
+# Run ESLint on a file
+
+eslint src/
+
+# --------------------------------------------
+
+# Fix auto-fixable ESLint issues
+
+eslint script.js --fix
+
+# --------------------------------------------
+
+# Run prettier
+
+npx prettier script.js --write
+
+# --------------------------------------------
+
+# Default shortcut for auto-indent in VSC
+alt + shift + f
+
+# --------------------------------------------
+
+# Install HTMLHint (HTML Validator)
+npm install --save-dev htmlhint
+
+# --------------------------------------------
+
+# Run HTMLHint (HTML Validator)
+npx htmlhint "src/**/*.html"
+
+# --------------------------------------------
+
+# Install Stylelint (CSS Validator)
+npm install --save-dev stylelint stylelint-config-standard
+
+# create .stylelintrc.json
+
+# --------------------------------------------
+
+# Run Stylelint (CSS Validator)
+npx stylelint "src/**/*.css"
+
+# --------------------------------------------
+
